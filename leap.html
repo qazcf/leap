@@ -8,9 +8,61 @@
     <link rel="icon" href="http://static.clewm.net/static/images/favicon.ico" mce_href="/static/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .weixin-tip {
+                display: none;
+                position: fixed;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.8);
+                filter: alpha(opacity = 80);
+                height: 100%;
+                width: 100%;
+                z-index: 100;
+            }
+
+            .weixin-tip p {
+                text-align: center;
+                margin-top: 10%;
+                padding: 0 5%;
+            }
+    </style>
+
     <script type="text/javascript">
           
-          checkclient();
+        $(window).on("load", function() {
+            var winHeight = $(window).height();
+            // function is_weixin() {
+            //     var ua = navigator.userAgent.toLowerCase();
+            //     if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            //         return true;
+            //     } else {
+            //         return false;
+            //     }
+            // }
+            var isWeixin = checkclient();
+            if (isWeixin) {
+                $(".weixin-tip").css("height", winHeight);
+                $(".weixin-tip").show();
+            }
+        })
+
+
 
          function checkclient() {
             var ua = navigator.userAgent.toLowerCase();
@@ -21,7 +73,7 @@
                         if (ios) {
                             alert('暂时不支持IOS版')
                         } else {
-                            alert('请点右上角->浏览器打开')
+                            // alert('请点右上角->浏览器打开')
                                
                         }
                         return false;
@@ -33,7 +85,7 @@
              
                     alert('暂时不支持IOS版')
                 } else {
-                    alert('微信请点右上角->浏览器打开')
+                    // alert('微信请点右上角->浏览器打开')
                 }
                 return false;
             }else{
@@ -53,6 +105,8 @@
 
     </script>
 
+
+
 </head>
 
 <body style="background: #f23b5e; text-align: center" >
@@ -64,6 +118,12 @@
         <p id="wx" style="color: #eee;display: none ;">(请在右上角浏览器打开)</p>
 
     </div>
+    <div class="weixin-tip">
+        <p>
+            <img src="http://bmob-cdn-23450.b0.upaiyun.com/2019/01/27/83518a4440f689ad808123baaf402b77.png" alt="在浏览器打开" />
+        </p>
+    </div>
+
     <div style="color: #fff;  margin-top: 20px ; margin-left: 20px; margin-right: 20px">
 
         <h2>品质美图，每日更新!</h2>
